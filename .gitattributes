@@ -1,2 +1,5 @@
 * text=auto !eol
+Acme/JPM/Encoders/GifEncoder.class -text
+Acme/JPM/Encoders/GifEncoderHashitem.class -text
+Acme/JPM/Encoders/ImageEncoder.class -text
 docs/CASL.doc svneol=native#unset
