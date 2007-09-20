@@ -91,9 +91,11 @@ public class 	MapEditor
 	private boolean mapOpen			= false;
 
 	// file variables
-	private File 	file;
+	@SuppressWarnings("unused")
+  private File 	file;
 	private String	fileName;
-	private String	homeDirectory;
+	@SuppressWarnings("unused")
+  private String	homeDirectory;
 
 	// the map
 	public GameMap 			map			= null;
@@ -312,7 +314,8 @@ public class 	MapEditor
 
 		// create the custom buildings
 		current = 0;
-		PrefabBuilding building;
+		@SuppressWarnings("unused")
+    PrefabBuilding building;
 		while (sbuf[current] != null && current < MAX_PREFAB_BUILDINGS) {
 
 			prefabBuildingList[current] = createBuildingFromText(sbuf[current], current);
@@ -334,9 +337,12 @@ public class 	MapEditor
 
 	private PrefabBuilding createBuildingFromText(String line, int lineNumber){
 
-		String 	imageName;
-		String[]	pointTokens = new String[256];
-		Terrain	terrain;
+		@SuppressWarnings("unused")
+    String 	imageName;
+		@SuppressWarnings("unused")
+    String[]	pointTokens = new String[256];
+		@SuppressWarnings("unused")
+    Terrain	terrain;
 		String 	buildingName = null;
 		int		terr 		= 0;
 		int[]		xPoints	= new int[MAX_BUILDING_POINTS];
@@ -1770,8 +1776,10 @@ public class 	MapEditor
 		else if (currentFunctionName.equals("Add road")) {
 	  		Iterator 		iter;
 	  		HexsideSelection  selectedHexside;
-	  		int			hexside;
-	  		Hex			hex;
+	  		@SuppressWarnings("unused")
+        int			hexside;
+	  		@SuppressWarnings("unused")
+        Hex			hex;
 			Terrain		tempTerrain = currentTerrain;
 
 			// set depression/groundlevel for sunken/elevated road
@@ -2169,8 +2177,10 @@ public class 	MapEditor
 	******************************/
 	public void keyTyped(KeyEvent e) {
 
-		int code = e.getKeyCode();
-		String modifiers = KeyEvent.getKeyModifiersText(e.getModifiers());
+		@SuppressWarnings("unused")
+    int code = e.getKeyCode();
+		@SuppressWarnings("unused")
+    String modifiers = KeyEvent.getKeyModifiersText(e.getModifiers());
 
 	}
 

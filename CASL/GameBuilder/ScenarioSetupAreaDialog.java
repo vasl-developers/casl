@@ -233,17 +233,25 @@ public class ScenarioSetupAreaDialog extends JDialog {
 	// OK
 	void button1_actionPerformed(ActionEvent e) {
 
-		int		axisELR		= 0;
-		int		alliedELR	= 0;
-		int		axisSAN		= 0;
-		int		alliedSAN	= 0;
-		int		turns		= 0;
-		boolean	halfTurn	= halfTurnCheckBox.isSelected();
+		@SuppressWarnings("unused")
+    int		axisELR		= 0;
+		@SuppressWarnings("unused")
+    int		alliedELR	= 0;
+		@SuppressWarnings("unused")
+    int		axisSAN		= 0;
+		@SuppressWarnings("unused")
+    int		alliedSAN	= 0;
+		@SuppressWarnings("unused")
+    int		turns		= 0;
+		@SuppressWarnings("unused")
+    boolean	halfTurn	= halfTurnCheckBox.isSelected();
 		Date	date		= null;
 
 		String	scenarioName 	= scenarioNameTextField.getText();
-		int		theater			= theaterComboBox.getSelectedIndex();
-		int		EC				= ECComboBox.getSelectedIndex();
+		@SuppressWarnings("unused")
+    int		theater			= theaterComboBox.getSelectedIndex();
+		@SuppressWarnings("unused")
+    int		EC				= ECComboBox.getSelectedIndex();
 
 		boolean error = false;
 

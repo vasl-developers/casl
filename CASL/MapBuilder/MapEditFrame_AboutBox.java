@@ -30,7 +30,8 @@ public class MapEditFrame_AboutBox extends JDialog implements ActionListener {
 	private JPanel insetsPanel3 = new JPanel();
 	private JButton button1 = new JButton();
 	private JLabel imageControl1 = new JLabel();
-	private ImageIcon imageIcon;
+	@SuppressWarnings("unused")
+  private ImageIcon imageIcon;
 	private JLabel label1 = new JLabel();
 	private JLabel label2 = new JLabel();
 	private JLabel label3 = new JLabel();
@@ -38,7 +39,8 @@ public class MapEditFrame_AboutBox extends JDialog implements ActionListener {
 	private BorderLayout borderLayout1 = new BorderLayout();
 	private BorderLayout borderLayout2 = new BorderLayout();
 	private FlowLayout flowLayout1 = new FlowLayout();
-	private FlowLayout flowLayout2 = new FlowLayout();
+	@SuppressWarnings("unused")
+  private FlowLayout flowLayout2 = new FlowLayout();
 	private GridLayout gridLayout1 = new GridLayout();
 	private String product = "Map Builder";
 	private String version = "";

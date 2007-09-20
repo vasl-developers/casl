@@ -466,12 +466,18 @@ public class MovementLogic {
 
 		// movement type flags
 		boolean infantryMovement 	= false;
-		boolean trackedMovement 	= false;
-		boolean halftrackMovement 	= false;
-		boolean ACMovement 			= false;
-		boolean truckMovement 		= false;
-		boolean wagonMovement 		= false;
-		boolean calvaryMovement 	= false;
+		@SuppressWarnings("unused")
+    boolean trackedMovement 	= false;
+		@SuppressWarnings("unused")
+    boolean halftrackMovement 	= false;
+		@SuppressWarnings("unused")
+    boolean ACMovement 			= false;
+		@SuppressWarnings("unused")
+    boolean truckMovement 		= false;
+		@SuppressWarnings("unused")
+    boolean wagonMovement 		= false;
+		@SuppressWarnings("unused")
+    boolean calvaryMovement 	= false;
 
 		float	movementCost = 0;
 		float	edgeMovementCost = 0;
@@ -741,7 +747,8 @@ public class MovementLogic {
 						if (results.getStartLocation().getAbsoluteHeight()!= results.getEndLocation().getAbsoluteHeight()){
 
 							Hex 	endHex 	 	= results.getEndLocation().getHex();
-							Hex 	startHex 	= results.getStartLocation().getHex();
+							@SuppressWarnings("unused")
+              Hex 	startHex 	= results.getStartLocation().getHex();
 							int 	startLevel	= results.getStartLocation().getAbsoluteHeight();
 							boolean levelFound	= false;
 

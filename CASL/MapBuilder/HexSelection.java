@@ -30,7 +30,8 @@ public class HexSelection
 
 	// private variables
 	private Shape 	paintShape;
-	private Shape 	updateShape;
+	@SuppressWarnings("unused")
+  private Shape 	updateShape;
 	private Hex		hex;
 
 	// getters and setters

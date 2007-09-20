@@ -1092,7 +1092,8 @@ public class Hex
 	public boolean isAdjacentEdgeTerrain(int x, int y, GameMap map) {
 
 		//find the location
-		Location loc = map.gridToHex(x, y).nearestLocation(x, y);
+		@SuppressWarnings("unused")
+    Location loc = map.gridToHex(x, y).nearestLocation(x, y);
 
 		if (1 ==1) {
 

@@ -116,6 +116,7 @@ public class GifEncoder extends ImageEncoder
 	int index = 0;
         for ( int row = 0; row < height; ++row )
             {
+            @SuppressWarnings("unused")
             int rowOffset = row * width;
             for ( int col = 0; col < width; ++col )
                 {

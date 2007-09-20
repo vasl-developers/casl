@@ -34,7 +34,8 @@ public class LOSResult {
 
 	// private variables
 	protected Location sourceLocation;
-	private Location targetLocation;
+	@SuppressWarnings("unused")
+  private Location targetLocation;
 	private boolean useAuxSourceLOSPoint;
 	private boolean useAuxTargetLOSPoint;
 

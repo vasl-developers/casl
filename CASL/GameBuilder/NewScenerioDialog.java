@@ -140,7 +140,8 @@ public class NewScenerioDialog extends JDialog {
 
 		String scenerioName 	= scenerioNameTextField.getText();
 		String mapName 		= mapNameTextField.getText();
-		String theater		= theaterTextField.getText();
+		@SuppressWarnings("unused")
+    String theater		= theaterTextField.getText();
 
 		// enforce required fields
 		if (mapName == null || scenerioName == null || mapName.equals("") || scenerioName.equals("")){

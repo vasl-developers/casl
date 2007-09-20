@@ -42,7 +42,9 @@ import javax.swing.filechooser.FileFilter;
  */
 public class ScenarioFileFilter extends FileFilter {
 
+    @SuppressWarnings("unused")
     private static String TYPE_UNKNOWN = "Type Unknown";
+    @SuppressWarnings("unused")
     private static String HIDDEN_FILE = "Hidden File";
 
     private Hashtable filters = null;

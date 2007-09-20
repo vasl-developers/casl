@@ -66,7 +66,8 @@ public abstract class Unit
 	public static final int SMALL_COUNTER_WIDTH	= 40;
 
 	// leader generation factors for each nationality
-	private static final float LGFactors[] =
+	@SuppressWarnings("unused")
+  private static final float LGFactors[] =
 		{(float)4, (float)8, (float)5.5, (float)5, (float)0, (float)0,
 		 (float)7, (float)6, (float)8,   (float)6, (float)0, (float)7};
 

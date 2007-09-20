@@ -33,7 +33,8 @@ import javax.swing.border.Border;
 
 public class MapDialog extends JDialog {
 
-	private MapEditFrame frame;
+	@SuppressWarnings("unused")
+  private MapEditFrame frame;
 
 	private JPanel panel1 = new JPanel();
 	private JPanel panel2 = new JPanel();

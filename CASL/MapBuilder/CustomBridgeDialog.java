@@ -140,7 +140,8 @@ public class CustomBridgeDialog extends JDialog {
 
   // OK
   void button1_actionPerformed(ActionEvent e) {
-	int 	width 	= 0,
+	@SuppressWarnings("unused")
+  int 	width 	= 0,
 			height 	= 0;
 	boolean error 	= false;
 

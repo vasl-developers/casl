@@ -677,7 +677,8 @@ public class Infantry
 		g.drawString("Basic:", x + 5, currentTop);
 
 		int checkImageHeight 	= checkImage.getHeight(obs);
-		int checkImageWidth	= checkImage.getWidth(obs);
+		@SuppressWarnings("unused")
+    int checkImageWidth	= checkImage.getWidth(obs);
 
 		// first line
 		tempRect1	= fm.getStringBounds("FP:", g);
@@ -772,7 +773,8 @@ public class Infantry
 		int currentTop = y;
 
 		int checkImageHeight 	= checkImage.getHeight(obs);
-		int checkImageWidth	= checkImage.getWidth(obs);
+		@SuppressWarnings("unused")
+    int checkImageWidth	= checkImage.getWidth(obs);
 
 		// header
 		tempRect1	= fm.getStringBounds("Special capabilities:", g);
@@ -973,7 +975,8 @@ public class Infantry
 		int currentTop = y;
 
 		int checkImageHeight 	= checkImage.getHeight(obs);
-		int checkImageWidth	= checkImage.getWidth(obs);
+		@SuppressWarnings("unused")
+    int checkImageWidth	= checkImage.getWidth(obs);
 
 		// header
 		tempRect1	= fm.getStringBounds("Current status:", g);

@@ -64,7 +64,8 @@ public class MapEditFrame extends JFrame  {
 	private MessageFrame messageFrame;
 
 	// directories
-	private String	homeDirectory;
+	@SuppressWarnings("unused")
+  private String	homeDirectory;
 	private String	mapDirectory;
 
 	// is an application?
@@ -105,8 +106,10 @@ public class MapEditFrame extends JFrame  {
 	private JButton saveButton = new JButton();
     private JButton saveAllButton = new JButton();
 	private ImageIcon image1;
-	private ImageIcon image2;
-	private ImageIcon image3;
+	@SuppressWarnings("unused")
+  private ImageIcon image2;
+	@SuppressWarnings("unused")
+  private ImageIcon image3;
 	private ImageIcon squareBrushIcon;
 	private ImageIcon roundBrushIcon;
 	private ImageIcon shadowsIcon;
@@ -772,7 +775,8 @@ public class MapEditFrame extends JFrame  {
 	}
 
 	//Help | About action performed
-	public void helpAbout_actionPerformed(ActionEvent e) {
+	@SuppressWarnings("deprecation")
+  public void helpAbout_actionPerformed(ActionEvent e) {
 		MapEditFrame_AboutBox dlg = new MapEditFrame_AboutBox(this);
 		Dimension dlgSize = dlg.getPreferredSize();
 		Dimension frmSize = getSize();
@@ -806,7 +810,8 @@ public class MapEditFrame extends JFrame  {
 
 	}
 
- 	public void showMapDialog(String function){
+ 	@SuppressWarnings("deprecation")
+  public void showMapDialog(String function){
 
    		MapDialog dialog = null;
 
@@ -839,7 +844,8 @@ public class MapEditFrame extends JFrame  {
 		showNewMapDialog();
 	}
 
- 	public void showNewMapDialog(){
+ 	@SuppressWarnings("deprecation")
+  public void showNewMapDialog(){
 
    		NewMapDialog dialog = new NewMapDialog(this, "Create a new map", true);
 
@@ -858,7 +864,8 @@ public class MapEditFrame extends JFrame  {
 		showCustomBuildingDialog();
 	}
 
- 	public void showCustomBuildingDialog(){
+ 	@SuppressWarnings("deprecation")
+  public void showCustomBuildingDialog(){
 
 		// set the rotation to zero
 		MapEditor1.setRotation(0);
@@ -1105,7 +1112,8 @@ public class MapEditFrame extends JFrame  {
 		}
 	}
 
-	public void insertMap() {
+	@SuppressWarnings("deprecation")
+  public void insertMap() {
 
 		// create the file filter
 		MapFileFilter filter = new MapFileFilter("map", "Map files");
@@ -1969,7 +1977,8 @@ public class MapEditFrame extends JFrame  {
 		}
 	}
 
-	public void showConvertVASLMapDialog(){
+	@SuppressWarnings("deprecation")
+  public void showConvertVASLMapDialog(){
 
    		VASLMapConverterDialog dialog = new VASLMapConverterDialog(this, true);
 

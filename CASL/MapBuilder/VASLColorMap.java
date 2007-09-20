@@ -30,7 +30,8 @@ public class VASLColorMap {
 	private Color 	color;
 	private Terrain	terrain;
 	private int		height;
-	private boolean	heightKnown;
+	@SuppressWarnings("unused")
+  private boolean	heightKnown;
 
 	public static int 		NO_HEIGHT		= 99;
 	public static Terrain	NO_TERRAIN		= null;

@@ -36,7 +36,8 @@ public class MapBuilder {
 
 	// windows
 	private MapEditFrame frame			= null;
-	private	MessageFrame messageFrame 	= null;
+	@SuppressWarnings("unused")
+  private	MessageFrame messageFrame 	= null;
 
 	// error file
 	private static PrintStream	errors = null;

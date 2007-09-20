@@ -504,7 +504,8 @@ public class Scenario
 			if (u.getClassType() == Unit.SS){
 
 				u.setElite(true);
-				boolean b = u.isElite();
+				@SuppressWarnings("unused")
+        boolean b = u.isElite();
 			}
 
 			// infantry?

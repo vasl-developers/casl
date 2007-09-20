@@ -426,7 +426,9 @@ public class GameMap
     // create a temp image for translated bridge image
     Bridge bridge = null;
     Image bridgeImage = null;
+    @SuppressWarnings("unused")
     int centerX = 0;
+    @SuppressWarnings("unused")
     int centerY = 0;
 
     for (int col = 0; col < hexGrid.length; col++) {
@@ -498,6 +500,7 @@ public class GameMap
 
         PrefabBuilding building = (PrefabBuilding) iter.next();
         Rectangle buildingArea = building.getShape().getBounds();
+        @SuppressWarnings("unused")
         Rectangle buildingPolygonArea = building.getShapePolygon().getBounds();
 
         // in paint area?
@@ -560,6 +563,7 @@ public class GameMap
    */
   public void paintMapShadows(int x, int y, int width, int height, BufferedImage img) {
 
+    @SuppressWarnings("unused")
     int startRow;
     int currentHeight;
     int currentTerrainHeight;
@@ -569,6 +573,7 @@ public class GameMap
     Hex tempHex = null;
 
     // Bridge stuff
+    @SuppressWarnings("unused")
     AffineTransform at;
     Bridge bridge = null;
 
@@ -1297,6 +1302,7 @@ public class GameMap
   public boolean hexOnMap(int col, int row) {
 
     try {
+      @SuppressWarnings("unused")
       Hex temp = hexGrid[col][row];
       return true;
     }
@@ -1683,26 +1689,32 @@ public class GameMap
     Terrain currentTerrain = null;
     int currentTerrainHgt = 0;
     int groundLevel = -9999;
+    @SuppressWarnings("unused")
     Terrain previousTerrain;
+    @SuppressWarnings("unused")
     int previousGroundLevel;
 
     // hex data variables
     Hex sourceHex = source.getHex();
     Hex targetHex = target.getHex();
     Hex currentHex = sourceHex;
+    @SuppressWarnings("unused")
     Hex smokeHex = sourceHex;
     Hex vehicleHex = sourceHex;
     Hex hindranceHex = sourceHex;
     Hex tempHex = null;
     int sourceElevation = sourceHex.getBaseHeight() + source.getBaseHeight();
     int targetElevation = targetHex.getBaseHeight() + target.getBaseHeight();
+    @SuppressWarnings("unused")
     int sourceEnterHexside = result.getSourceExitHexside();
+    @SuppressWarnings("unused")
     int targetEnterHexside = result.getTargetEnterHexside();
     int range = range(sourceHex, targetHex);
     int rangeToSource = 0;
     int rangeToTarget = range;
 
     // bridge stuff
+    @SuppressWarnings("unused")
     AffineTransform at;
     Shape bridgeArea = null;
     Shape bridgeRoadArea = null;
@@ -1744,7 +1756,9 @@ public class GameMap
     result.setTargetEnterHexside(LOSResult.UNKNOWN);
 
     // set the adjacent hexes
+    @SuppressWarnings("unused")
     Hex sourceAdjacentHex = getAdjacentHex(sourceHex, result.getSourceExitHexside());
+    @SuppressWarnings("unused")
     Hex targetAdjacentHex = getAdjacentHex(targetHex, result.getTargetEnterHexside());
 
     // LOS slope variables
@@ -1771,7 +1785,9 @@ public class GameMap
     }
 
     boolean LOSis60Degree = Math.abs(slope - Math.tan(Math.toRadians(60))) < tolerance;
+    @SuppressWarnings("unused")
     int sourceHexspine = useAuxSourceLOSPoint ? sourceHex.getHexspine(source.getAuxLOSPoint()) : sourceHex.getHexspine(source.getLOSPoint());
+    @SuppressWarnings("unused")
     int targetHexspine = useAuxTargetLOSPoint ? targetHex.getHexspine(target.getAuxLOSPoint()) : targetHex.getHexspine(target.getLOSPoint());
 
     // set the result with the slope information
@@ -2606,6 +2622,7 @@ public class GameMap
       boolean isCliffHexside
       ) {
 
+    @SuppressWarnings("unused")
     int numBlindHexes = 0;
     int temp = 0;
 
@@ -3398,6 +3415,7 @@ public class GameMap
     Iterator iter = smokeList.iterator();
     while (iter.hasNext()) {
 
+      @SuppressWarnings("unused")
       Smoke s = (Smoke) iter.next();
       iter.remove();
     }
@@ -3644,6 +3662,7 @@ public class GameMap
   public void convertMultiLevelBuildings(VASLMultilevelBuildings buildings) {
 
     Hex h = null;
+    @SuppressWarnings("unused")
     Location l = null;
     Terrain t = null;
     for (int x = 0; x < hexGrid.length; x++) {
@@ -3681,8 +3700,10 @@ public class GameMap
 
     char tchar;
     byte tbyte;
+    @SuppressWarnings("unused")
     Location loc1, loc2;
     Hex h1, h2;
+    @SuppressWarnings("unused")
     Point p;
 
     // flip the terrain and elevation grids
@@ -3932,6 +3953,7 @@ public class GameMap
       int hexspine = LOSHexspine < 2 ? LOSHexspine + 4 : LOSHexspine - 2;
       Hex hex1 = getAdjacentHex(h, hexside);
       Hex hex2 = getAdjacentHex(h, LOSHexspine);
+      @SuppressWarnings("unused")
       Location l1 = hex2.getHexsideLocation(hexspine);
       Location l2 = hex1.getHexsideLocation(LOSHexspine);
       Location l3 = hex2.getHexsideLocation(hexside);

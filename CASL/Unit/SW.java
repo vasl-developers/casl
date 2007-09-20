@@ -341,8 +341,10 @@ public class SW extends Counter {
 		currentTop 	+= (int) tempRect1.getHeight() + 3 * spaceBetweenLines;
 		g.drawString("Basic:", x + 5, currentTop);
 
-		int checkImageHeight 	= checkImage.getHeight(obs);
-		int checkImageWidth	= checkImage.getWidth(obs);
+		@SuppressWarnings("unused")
+    int checkImageHeight 	= checkImage.getHeight(obs);
+		@SuppressWarnings("unused")
+    int checkImageWidth	= checkImage.getWidth(obs);
 
 		// first line
 		tempRect1	= fm.getStringBounds("FP:", g);
@@ -448,7 +450,8 @@ public class SW extends Counter {
 		int currentTop = y;
 
 		int checkImageHeight 	= checkImage.getHeight(obs);
-		int checkImageWidth	= checkImage.getWidth(obs);
+		@SuppressWarnings("unused")
+    int checkImageWidth	= checkImage.getWidth(obs);
 
 		// header
 		tempRect1	= fm.getStringBounds("Special capabilities:", g);
@@ -504,7 +507,8 @@ public class SW extends Counter {
 		int currentTop = y;
 
 		int checkImageHeight 	= checkImage.getHeight(obs);
-		int checkImageWidth	= checkImage.getWidth(obs);
+		@SuppressWarnings("unused")
+    int checkImageWidth	= checkImage.getWidth(obs);
 
 		// header
 		tempRect1	= fm.getStringBounds("Current status:", g);

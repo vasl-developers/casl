@@ -51,7 +51,8 @@ public class GameEditFrame extends JFrame  {
 	MessageFrame messageFrame;
 
 	// directories
-	private String	homeDirectory;
+	@SuppressWarnings("unused")
+  private String	homeDirectory;
 	private String	scenarioDirectory;
 	private String	mapDirectory;
 
@@ -497,7 +498,8 @@ public class GameEditFrame extends JFrame  {
 	}
 
 	//Help | About action performed
-	public void helpAbout_actionPerformed(ActionEvent e) {
+	@SuppressWarnings("deprecation")
+  public void helpAbout_actionPerformed(ActionEvent e) {
 		GameEditFrame_AboutBox dlg = new GameEditFrame_AboutBox(this);
 		Dimension dlgSize = dlg.getPreferredSize();
 		Dimension frmSize = getSize();
@@ -551,7 +553,8 @@ public class GameEditFrame extends JFrame  {
 
 	}
 
- 	public void showScenarioDialog(String function){
+ 	@SuppressWarnings("deprecation")
+  public void showScenarioDialog(String function){
 
    		ScenarioDialog dialog = null;
 
@@ -579,7 +582,8 @@ public class GameEditFrame extends JFrame  {
 
 	}
 
- 	public void showNewScenarioDialog(){
+ 	@SuppressWarnings("deprecation")
+  public void showNewScenarioDialog(){
 
 		NewScenarioDialog dialog;
 
@@ -920,7 +924,8 @@ public class GameEditFrame extends JFrame  {
 
 	public void ShowCurrentCounterInformation(){
 
-		CounterInfoFrame infoFrame = new CounterInfoFrame(gameEditor.getCurrentCounter(), CounterInfoFrame.ALL_INFORMATION, gameEditor.getCheckMarkImage());
+		@SuppressWarnings("unused")
+    CounterInfoFrame infoFrame = new CounterInfoFrame(gameEditor.getCurrentCounter(), CounterInfoFrame.ALL_INFORMATION, gameEditor.getCheckMarkImage());
 	}
 
 	void addButton() {

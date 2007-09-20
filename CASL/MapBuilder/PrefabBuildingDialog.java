@@ -46,7 +46,8 @@ public class PrefabBuildingDialog extends JDialog {
 	private MapEditFrame frame;
 
 	private PrefabBuilding[] 	buildingList;
-	private int			buildingCount;
+	@SuppressWarnings("unused")
+  private int			buildingCount;
 	private int		 	currentBuilding;
 
   public PrefabBuildingDialog(

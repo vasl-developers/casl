@@ -58,10 +58,12 @@ public class 	GameEditor
 
 	// counter variables
 	private Counter	currentCounter;
-	private CounterInfoFrame infoFrame;
+	@SuppressWarnings("unused")
+  private CounterInfoFrame infoFrame;
 
 	// file variables
-	private File 	file;
+	@SuppressWarnings("unused")
+  private File 	file;
 	private String	fileName;
 	private String	homeDirectory;
 
@@ -584,8 +586,10 @@ public class 	GameEditor
 
 	public void keyPressed(KeyEvent e) {
 
-		int code = e.getKeyCode();
-		String modifiers = KeyEvent.getKeyModifiersText(e.getModifiers());
+		@SuppressWarnings("unused")
+    int code = e.getKeyCode();
+		@SuppressWarnings("unused")
+    String modifiers = KeyEvent.getKeyModifiersText(e.getModifiers());
 
 		// is the scenario open?
 		if (!scenarioOpen) return;
@@ -1803,7 +1807,8 @@ public class 	GameEditor
 
 	private Fortification createFortificationFromText(String line, int lineNumber){
 
-		char 		tempChar;
+		@SuppressWarnings("unused")
+    char 		tempChar;
 
 		// SW.txt file variables
 		int		typeID;
@@ -2124,7 +2129,8 @@ public class 	GameEditor
 	public void showAllCounterInformation(Counter c){
 
 		if (c != null){
-			CounterInfoFrame infoFrame = new CounterInfoFrame(c, CounterInfoFrame.ALL_INFORMATION, getCheckMarkImage());
+			@SuppressWarnings("unused")
+      CounterInfoFrame infoFrame = new CounterInfoFrame(c, CounterInfoFrame.ALL_INFORMATION, getCheckMarkImage());
 		}
 	}
 

@@ -1,4 +1,7 @@
 * text=auto !eol
+/.classpath -text
+/.project -text
+.settings/org.eclipse.jdt.core.prefs -text
 Acme/JPM/Encoders/GifEncoder.class -text
 Acme/JPM/Encoders/GifEncoderHashitem.class -text
 Acme/JPM/Encoders/ImageEncoder.class -text

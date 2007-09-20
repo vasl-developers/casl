@@ -1511,7 +1511,8 @@ public class Terrain
 public static void resetTerrain(){
 		
 		terrainList = null;
-		Terrain terrainList[] = getTerrainList();
+		@SuppressWarnings("unused")
+    Terrain terrainList[] = getTerrainList();
 	}
 }
 
