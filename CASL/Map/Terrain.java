@@ -275,7 +275,7 @@ public class Terrain
 	public final static int TOWER_3_LEVEL_OBSTACLE	= 165;
 
 
-	public static final Terrain[] getTerrainList() {
+	public static synchronized final Terrain[] getTerrainList() {
 
 		if (terrainList == null) {
 			terrainList	 = new Terrain[256];
