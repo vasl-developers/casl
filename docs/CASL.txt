@@ -1,0 +1,197 @@
+los-gui
+Version 1.0
+
+Using los-gui
+
+The MapBuilder Window
+
+The MapBuilder window has the following widgets (top to bottom, left to right):
+Widget	Description	Comments		Top row:		New button	Create a new map file			Open button	Open an existing map file			Save button	Saves the current map			Update (paint brush) button	Applies the current selection to the map			Cancel (“do not”) button	Remove all selections			Brush pull down	Selects the current brush	Full hex brush or 64, 32, 16, 8, 4, 2, or 1 pixels		Brush Shape button	Selects the shape of the brush	Ignored when using the Hex brush		Custom dialog button
+(“building”)	Displays the ‘custom’ dialog box 	Used when adding custom buildings, bridges, and prefab buildings		Outline button	Display/hide the selection outline			Rotation field	Degrees to rotate the current brush			Zoom pull down menu	Zoom in/out	Not currently used		LOS "Check" button	Performs an LOS test on the board	Check the LOS from Q5 to all hexes on the board from levels 0, 2, and 4						Bottom row:		Function pull down menu	Selects the current function	Resets the Terrain and the Target Terrain pull down menus. Removes all selections.		Terrain pull down menu	Selects the current terrain	ETO terrain only		Change Terrain (“to”) button	Changes all of the terrain shown in the target terrain pull down menu to the current terrain	Not all terrain combinations are logical (no restriction are enforced). If there are selections on the board, only the terrain in the selections is changed.		Target Terrain pull down menu	Selects the "to" terrain for the Change Terrain button	See Change Terrain button above		
+The status bar, on the bottom of the window, displays the following information when the mouse is moved over the map:
+
+
+Name	Description		X	X position of the mouse on the map		Y	Y position of the mouse on the map		Z	Map elevation (i.e. ground level + terrain height) of the pixel at (X,Y)		Location	Name of the location nearest the mouse pointer (current location)		Height	Height of the current location in full levels		Terrain	Terrain in the current location		Bypass flag	True if current location can be entered using bypass movement		
+
+The status bar displays the following information when the unit is moved:
+
+Name	Description		Location	Name of the location the moved into (current location)		Height	Height of the current location		Terrain	Terrain of the current location		Movement paths	The locations that where traversed in reaching the current location		MF	The number of MF expended. If a movement costs all MF, 99 MF is used.		
+When doing LOS and the LOS is blocked, the status bar displays at what point the LOS is blocked, the reason, and a rules paragraph reference. 
+
+When doing LOS and the LOS is NOT blocked, the status bar displays the number of hindrances and whether the LOS is a continuous slope. 
+
+
+
+The MapBuilder Message Window
+
+
+The MapBuilder message window displays movement messages as the unit is moved. The message consists of three parts: the rules paragraph reference, a textual description of the movement, and the number of movement factor expended. A single move may have more than one message. A blank line separates individual movements.
+Creating a New Map
+Press the New button or use the File|New menu to display the New Map Dialog:
+
+
+Enter the number of Rows and Column for the map. The number of Columns must be an odd number. The defaults, 10x33, are for a standard geomorphic board. If you enter an invalid number, your entries are ignored and you must enter valid number or press the Cancel button.
+
+Opening an Existing Map
+Press the Open button or use the File|Open menu to display the Open Map Dialog:
+
+
+The Open Map Dialog will default to the Maps directory (…\CASL\Maps). All maps MUST be kept in this directory. An extension of .map will be added if an extension is not given.
+Saving and Closing the Map
+Save the map by pressing the Save button or use the File|Save menu. Use the File|Save As menu to save the current map under a new name. Use the File|Close menu to close the map. If the map has not been saved you will be prompted to save it before closing.
+
+Map Concepts
+A few abstractions were created and a couple of the rules needed to be “tweaked” to simplify the LOS logic and make it easier to create the maps. These are outlined below.
+The Location
+The term Location used in the context of MapBuilder is different from the use of Location in the game. There may be more than one MapBuilder location to represent a single game location. For example, a hex with a foxhole counter in it contains two locations in the center of the hex, one for units in the foxhole and one for units outside of the foxhole. In the game, this is considered to be a single location.
+
+The Hex
+Each hex has at least 7 locations that contain terrain and other objects (fortifications, tunnels, etc.). The 7 locations are the center of the hex and one location for the areas between the center and the 6 hexsides.  The 6 hexside locations are used for bypass and are named North, Northeast, Southeast, South, Southwest, Northwest. North is always at the top of the map where the hex number is. Additional locations may exist above or below the center location for building floors, entrenchments, tunnels, etc.
+
+Each of the 6 hexsides may also contain an “Hexside Terrain”. Hexside Terrain includes hedges, walls, roadblocks, etc., and is different than the terrain in the bypass locations.
+
+Each location has a “hot spot” that is used to determine the terrain for that location. The hot spot of the hex center is the hex center dot. For the 6 bypass locations, the hot spot is located in the center of the hexside just inside the hex. When the terrain over the hot spot is changed, the terrain for that location is also changed.
+
+Each hex may contain “depression terrain” in addition to the terrain in the locations and the hexside terrain. See Adding and Removing Depression Terrain below.
+
+A hex may also contain one bridge, a single entrenchment location, a tunnel or sewer, and one stairway (if it’s a building hex).
+
+Example:
+
+
+In hex D3, the center location is both Woods and Gully. The terrain for D3/D2, D3/E3, D3/C3, D3/C4, and D3/D4 locations is Open Ground. The terrain for D3/E4 location is Gully. The D3/D2 and the D3/C3 hexsides have an Hexside Terrain of Hedge. The other hexsides have no Hexside Terrain.
+
+Important Note: MapBuilder was designed to recreate existing geomorphic map boards. You can create new terrain combinations that do not currently exist if you wish; the results may or may not behave as expected. For example, if you placed a bridge across the gully through the woods in the above example the movement algorithm may or may not handle it ‘correctly’.
+LOS Points
+The logic for the LOS points had to be modified to keep the LOS algorithm efficient. Specifically, LOS is always drawn to and from a single point, either the hex center dot or one of the hex vertices. Rules that refer to LOS anywhere along the hexside (snapshot) must use a single aiming point, which is the same point as the hex terrain hot spots. 
+Adding Terrain
+Adding terrain consists of the following steps: 
+
+Select the Edit Function; 
+Select which terrain you want to add
+Select the brush and the brush shape
+Add your selections to the map (this will create red 'new terrain' areas);
+And update the map the map by pressing the Update button.. 
+
+Each of these steps is detailed below.
+
+IMPORTANT: Future version MAY NOT support maps created in a previous version. All maps are throwaway so don't spend too much time getting your map to look pretty:
+
+Select the Edit Function and Terrain
+Select one of the following Edit Functions:
+Edit Function	Description		LOS	Check the LOS and move the 6-6-7 unit on the map		Set ground level	Add hills, valleys, and depression terrain		Add terrain	Add terrain including buildings		Add Hexside Terrain	Add and remove Hexside Terrain		Add bridge	Add and remove bridges		Add road	Add roads, including elevated and sunken roads		Add objects	Add and remove entrenchments, tunnels, and artificial terrain objects		
+When the Edit Function is selected, the Terrain and Target Terrain pull down menus are updated with the terrain options for this function. Choose the desired terrain (which will become the ‘current terrain’).
+Brush options
+Select the desired brush from the Brush pull down menu. The Hex Brush (default) is used to select an entire hex. Click anywhere in the hex to select it. If not using the hex brush, choose one of the other brush sizes: 64, 32, 16, 8, 4, 2, or 1 pixels. Use the Brush Shape button to choose a square brush or a round brush. If you are using a square brush and want the selection to be rotated, enter the amount of rotation (in degrees) into the Rotation field. Press the outline button to see an outline of the selection when moving the mouse. 
+
+Note: The hex brush includes a little bit of some of the neighboring hexes. This was necessary to ensure every pixel in hex contains the new terrain. Be careful when using this brush (i.e. hills that overlap into an adjacent hex will block LOS to lower elevations) and check the LOS often.
+
+The brush is not used for the LOS, Add road, and Add objects Edit Functions.
+Adding and Removing Map Selections
+Position the outline to the desired location on the map and click the mouse. A red selection marker will be added to the map showing the location and shape of the selection. IMPORTANT: Once selections are added, you need to use the Update function (below) to add them to the map.
+
+To remove the last selection, press the Ctl+z key. Any number of selections may be removed this way. Selections are removed in the reverse order in which they are added. To remove all selections, press the Cancel button or press the ESC key. Changing the current Edit Function will remove all of the selections on the map.
+Updating the Map
+Press the Update button or the 'u' key to apply the current selections to the map. IMPORTANT: Once a selection has been applied to the map you may not undo the change. If you have applied a mistake, close the map without saving it and reopen it again to remove the error. 
+
+You can change the current terrain at anytime before you hit the update button, even after selections have been added.
+
+Note: Apply changes to the map in small areas and save often. Do not ‘scatter’ the selections across the map if possible. This is important because MapBuilder must recreate the map image each time the map is updated, which is a slow process. MapBuilder updates the smallest possible area that includes all of the selections using a bounding rectangle. This is especially important to keep in mind when adding roads.
+Function Details
+Here are the terrain types available for each of the edit functions:
+Function	Terrain	Comments		LOS	<None>	Move unit and check LOS only		Set ground level	Hill Level 0..10				Valley -1, -2				Gully				Dry Stream				Shallow Stream				Deep Stream			Add terrain	Open Ground				Plowed Field				Snow				Deep Snow				Ice				Mud				Mudflats				Water				Shallow Water				River				Shallow River				Ford				Canal				Marsh				Dirt Road				Paved Road				Runway				Path				Shell Holes				Grain				Brush				Crags				Debris				Grave Yard				Woods				Forest				Pine Woods				Orchard				Orchard, Out of Season				Lumberyard				Custom Building	See “Adding Custom Buildings” below			Prefab Building	See “Adding Prefab Buildings” below			Wooden Rubble				Wooden Building	Single hex wooden building			Wooden Building, One level	Multi-hex wooden building with one floor			Wooden Building, Two levels	Multi-hex wooden building with two floors			Wooden Building, Three levels	Multi-hex wooden building with three floors			Wooden Factory, 1.5 level	Wooden factory, 1.5 levels high			Wooden Factory, 2.5 level	Wooden factory, 2.5 levels high			Stone Rubble				Stone Building	Single hex stone building			Stone Building, One level	Multi-hex stone building with one floor			Stone Building, Two levels	Multi-hex stone building with two floors			Stone Building, Three levels	Multi-hex stone building with three floors			Stone Factory, 1.5 level	Stone factory, 1.5 levels high			Stone Factory, 2.5 level	Stone factory, 2.5 levels high			Temple				Light Jungle				Dense Jungle				Bamboo				Palm Trees				Huts				Collapsed Huts				Kunai				Swamp				Rice Paddy, Drained				Rice Paddy, Irrigated				Rice Paddy, In Season			Add Hexside Terrain	Wall				Road Block				Hedge				Bocage				Cliff	Used on crest lines only Doesn’t change the elevation beneath it.			Rowhouse Wall	Only affects buildings			Panji				Rice Paddy Bank				Remove	Removes existing Hexside Terrain, overwrite with open ground		Add bridge	Custom Bridge	See “Adding a Bridge” below			Remove	Remove existing bridge in hex		Add Road	Dirt Road				Paved Road				Sunken Road	Will ‘lower’ the ground level beneath it one level			Elevated Road	May only be placed on Level 0 		Add objects	Foxholes				Trench				Stairway	Used for multi-hex two and three level buildings. Inherent stairways are automatically added.			Sewer				Tunnel				Smoke	For LOS testing only			Vehicle	For LOS testing only			Remove Stairway				Remove Tunnel/Sewer				Remove Entrenchment				Remove Smoke				Remove Vehicle			
+When adding buildings, inherent stairways are automatically added and displayed.
+
+Adding Roads
+Clicking on either side of a hexside to add a road between that hexside and the center of the hex. Any click in the center of a hex is ignored. If the terrain in the hex center location is open ground, it is changed to the new road terrain. If it is NOT open ground, the terrain of the hex center location remains the same. 
+
+Sunken roads will “push” the ground level down one level to create the sunken road. The sunken area will be a little wider than the road.
+
+Elevated road may only be added to open ground with a ground level of 0. The elevated area will be a little wider than the road.
+
+If Hexside Terrain exists on a road hexside it is not remove but the road creates a ‘break’ through the Hexside Terrain beneath the road. 
+Changing Existing Map Terrain
+You may use the Change Terrain feature to change existing map terrain. Select the terrain you want to remove in the Terrain pull down menu and put the new (“target”) terrain in the Target Terrain pull down menu and press the Change Terrain (“to->”) button. You will be asked to confirm your decision. IMPORTANT: This is NOT undoable so be careful! If you make a mistake you must close the map without saving it and reopen it. Updating the map takes a while (the entire map image must be recreated) so be patient.
+
+Many terrain combinations do not make sense. For example, you can map all wooden buildings to woods if you want to but the map may not be usable. NO error checking is done so be careful with this.
+
+Checking the LOS and Moving the 6-6-7 Unit
+To check the LOS or change position of the 6-6-7 unit, select the LOS in the Function pull down menu. All of the edit widgets will be disabled.
+
+Checking the LOS
+Move the unit where you want (see below). Click the left mouse button  and drag the mouse to turn on LOS checking. Release the left button to turn LOS checking off. The results of the LOS check will be displayed in the Status Bar at the bottom of the window. The LOS assumes the "target" is in the base (ground level) location if additional vertical locations exist.
+
+The LOS thread will be white is the LOS is clear. If a hindrance is encountered, the thread will turn read at the point of the first hindrance. If the LOS is blocked, the thread will turn black at the point where the LOS is blocked. 
+Moving the Unit
+
+Building upper-floor locations are ‘above’ the hex center location. To move into an upper-level building location (i.e. up a stairway), navigate to the hex center location and press 2. Use Alt+2 to move back down to the hex center location. A stairway must exist.
+
+You can enter a hex using bypass movement by pressing the Ctl or Alt keys while entering the new hex. Hold the "Ctl" key down to bypass the obstacle in a clockwise direction (or "bypass to the left" from the unit's point of view). Hold the "Alt" key down to bypass the obstacle in a counter-clockwise direction (or "bypass to the right" from the unit's point of view). Refer to the following example:
+
+
+
+Movement	Keystroke		Continue bypassing in along the C4/D4 hexside	5 (South)		Continue bypassing in along the C4/C4 hexside	7 (Northwest)		Enter the woods in C4	4 (Southwest)		Enter D4	6 (Southeast)		Enter D4, bypassing on the D4/D3 hexside	Alt+6 		Enter D4, bypassing on the D4/C5 hexside	Ctl+6 		Enter C3	8 (North)		Enter D3	9 (Northeast)		
+Creating New “Prefab” Buildings
+The PrefabBuildings.txt File
+The CASL/MapBuilder directory contains a file called PrefabBuildings.txt that contains a definition of all of the “prefab” buildings available to MapBuilder. Each line represents an individual building and consists of a series of values separated by the ‘|’ symbol. The value, in order, are:
+Name	Description	Constraints		Image Name	The name of the image file 	Use the following naming convention:
+	‘Bldg’	Prefix
+	Type	‘Stone’, ‘Wood’,
+			“SFact”, or “WFact”
+	Height	1Level
+			1_5Level
+			2_5Level
+			3_5Level
+	Size		Number of hexes
+	NN		Numeric suffix		Building Type	The ‘construction type’	S or s	Stone Building
+W or w	Wooden Building
+F or f	Stone Factory
+C or c	Wooden Factory		Levels	The number of levels above ground level	0	No levels	(Not valid for factory)
+1	1 level
+2	2 levels
+3	3 levels 	(Not valid for factory)		Building Outline Point	The points that define the building outline	x, y format
+All remaining entries in the line are the points that form the shape of the building. The last point must be terminated by the ‘|’ character.						
+Refer to the samples provided for examples. The image files must be located in the CASL directory and be named as defined above.
+
+Changing the Map Graphics
+
+You may customize any of the graphics used by MapBuilder to create the map image by changing the .gif files found in the CASLData.zip file. Some experience with WinZip (or similar zip utility program) is necessary. The terrain images must be placed in the CASL/images/terrain subdirectory within the .zip file. To change the graphics, unzip the file into a directory, replace the .gif files with the new ones, and then rezip the CASLData.zip file. At some point a standard set of graphics will need to be settled on, but for now you can experiment with changing the way the maps looks buy changing the terrain images. You CANNOT change the size of the file. The graphics are applied to the map by tiling them and using the map terrain as a filter. The terrain image is – in effect - tiled across an image the size of the map and then for each pixel that contains the appropriate terrain, the corresponding pixel from the tiled terrain image is added to the map. This is repeated for all terrain.
+
+The terrain images are loaded at the time MapBuilder is started, so if you change any of the terrain images you will need to restart MapBuilder. If you want to change the terrain appearance in an existing map, make the change to the terrain image, load the map, and press the update button without adding any selection. The entire map image will be recreated using the new image.
+
+Converting VASL images
+It is possible to convert the existing VASL map boards into MapBuilder format. Eventually, a library of the standard geomorphic map boards will be created. For now, you can do this using the File|Convert VASL Image menu option. Use the following steps:
+
+Create a new empty geomorphic map board (10 x 33) if one doesn't already exist.
+
+Create a copy of the empty.map file and name it bdxx.map, where xx is the board number (1, 2, etc.).
+
+Select the File|Convert VASL Image menu and you will be prompted for the board number. Enter the board number and press the 'OK' button. Some maps can take a long time to convert, so be patient if you have a slower machine. Here are some things you will need to do to clean up the converted image:
+
+Ensure that both the Shadows and the Hill Contour options are selected (buttons pressed) and repaint the map by pressing the Update button.  This will show you the elevation grid underneath the terrain and any ‘odd’ pixels that didn’t convert properly.
+
+General
+Check the map for areas where the elevation and terrain is obviously wrong (use the contour lines and shadows as a guide). There are a few pixels on each map that are wrong.
+Move the mouse over the terrain features and ensure the correct terrain type is there (look at the value for the location on the status bar).
+Move the mouse around woods and building terrain and check the bypass flags. Note that the bypass flags on forest-road hexes will not be set correctly (known problem)
+Occasionally woods, building, etc. terrains will miss the center dot of the hex. If so, add a small bit of the terrain over the hex center dot and remove it with the Dirt Road terrain.
+
+Roads/Path
+Where a road/path crosses a hex side, ensure that the terrain type on either side is the road type. If not, add a bit of road/path (8 pixel round brush) to the middle of the hex side so it is.
+Add a bit of road (8 pixel round brush) in columns A and GG where the road leave the geomorphic map board so that the terrain type on either side is the road type (A5/B5, A6/B5, FF5/GG5, FF5/GG6). Add a bit of open ground to the A5/A6 and GG5/GG6 hex sides to the terrain on that hex side is open ground.
+The elevation of the road portion of sunken and elevated roads will be level 0. Change the elevation as necessary.
+
+Hexside terrain
+Ensure the Hexside terrain has been included on both side of the hexside (including cliffs).
+
+Hills
+Straighten out the elevation contour anywhere a terrain feature crosses a hill contour.
+Ensure the black area of a cliff is on the lower elevation
+
+Forest-road
+Anywhere a road cuts through non-open ground terrain, the terrain type in the center of the hex will be the road type. Add the appropriate terrain back over the center dot of the hex (8 pixel round brush) and then add the road over it again. The center of the hex will then show the correct terrain.
+
+Bridges
+The area around a bridge will need to be redone. Remove any extraneous terrain and then add the gully/stream back in. Once complete, add the bridge again.
+
+Important: Converted VASL images are NOT fully VASL compatible. The VASL dynamic terrain changes will not work with map image files created with MapBuilder. 
